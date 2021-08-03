@@ -42,7 +42,7 @@ exports.login = async (req, res) => {
         'ou': foundUser.ou
     }
     const token = jwt.sign(JSON.stringify(payload), process.env.TOKEN_SECRET,{algorithm: 'HS256'});
-    res.header('auth-token', token).send(payload);
+    res.header('auth-token', token).header('Access-Control-Expose-Headers', '*').send(payload);
 }
 
 // Verify a user's JWT token
